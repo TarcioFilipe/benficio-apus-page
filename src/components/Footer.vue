@@ -1,11 +1,9 @@
 <template>
   <footer class="bg-black text-white py-10">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-      <!-- LOGO E REDES -->
       <div>
-        <v-img lazy-src="/images/apus_logo_new.png"
-          src="/images/logo_branca.png" class="cursor-pointer"
-          min-height="42" width="120" cover @click="() => $router.push('/')">
+        <v-img lazy-src="/images/apus_logo_new.png" src="/images/logo_branca.png" class="cursor-pointer" min-height="42"
+          width="120" cover @click="() => $router.push('/')">
         </v-img>
         <h4 class="text-sm font-semibold mb-2">NOSSAS REDES</h4>
         <div class="card">
@@ -47,16 +45,19 @@
         <h4 class="text-sm font-semibold mb-2">NOSSOS PRODUTOS</h4>
         <ul class="space-y-1 text-sm">
           <li>
-            <RouterLink to="#" class="hover:underline">Benefícios</RouterLink>
+            <p @click="handleLink('cartao')" class="hover:underline">Sobre Cartões</p>
           </li>
           <li>
-            <RouterLink to="#" class="hover:underline">Sobre Cartões</RouterLink>
+            <p @click="handleLink('conta-pj')" class="hover:underline">Conta PJ APUS</p>
           </li>
           <li>
-            <RouterLink to="#" class="hover:underline">Seguros</RouterLink>
+            <p @click="handleLink('pix')"class="hover:underline">PIX</p>
           </li>
           <li>
-            <RouterLink to="#" class="hover:underline">Empréstimos</RouterLink>
+            <p @click="handleLink('capital-giro')"class="hover:underline">Capital de Giro</p>
+          </li>
+          <li>
+            <p @click="handleLink('link-pagamento')"class="hover:underline">Link de Pagamento</p>
           </li>
         </ul>
       </div>
@@ -66,13 +67,13 @@
         <h4 class="text-sm font-semibold mb-2">DÚVIDAS</h4>
         <ul class="space-y-1 text-sm">
           <li>
-            <RouterLink to="#" class="hover:underline">FAQ</RouterLink>
+            <p @click="handleLink('')" class="hover:underline">FAQ</p>
           </li>
           <li>
-            <RouterLink to="#" class="hover:underline">Quem Somos</RouterLink>
+            <p @click="handleLink('')" class="hover:underline">Quem Somos</p>
           </li>
           <li>
-            <RouterLink to="#" class="hover:underline">Blog</RouterLink>
+            <p @click="handleLink('blog')" class="hover:underline">Blog</p>
           </li>
         </ul>
       </div>
@@ -89,19 +90,173 @@
           </a>
         </div>
       </div>
+      <p class="font-medium text-sm">
+        © 2015 - {{ new Date().getFullYear() }} — Todos os diretos reservados
+      </p>
     </div>
     <div class="border-t border-gray-700 mt-10"></div>
   </footer>
 </template>
 
-<script setup>
-// Nenhuma lógica é necessária no momento.
-// Mas poderíamos importar dados dinâmicos ou props aqui futuramente.
+<script>
+export default {
+  name: 'Footer',
+  data() {
+    return {
+      icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
+      isPolicyOpen: false,
+      isTermsOpen: false,
+      PolicyData: [
+        {
+          title: '', subtitle: 'A MasterClin toma todos os cuidados com a privacidade dos seus usuários e tem o comprometimento de preservá-la. Através deste documento, "Política de Privacidade”, listamos os principais pontos para transparência e segurança do usuário. O objetivo deste documento é assegurar nosso compromisso com os dados dos usuários e qualquer dúvida ou interesse maior na parte técnica, entre em contato através de nossos canais de atendimento para auxiliarmos em até 72h (setenta e duas horas).'
+        },
+        { title: '1 - Segurança', subtitle: 'O ambiente criptografado garante segurança aos dados dos usuários' },
+        {
+          title: '2 - Dados dos usuários', subtitle: 'O cadastramento é realizado através do código e validade informado através da carteirinha de usuário do clube de vantagens. Os dados pessoais podem ser incluídos com a atualização e validação via e-mail. Não é obrigatório a inclusão qualquer documento adicional para a utilização do ambiente. Os dados são guardados em ambiente seguro e não são utilizados para outros fins.'
+        },
+        {
+          title: '3 - Link de parceiros externos', subtitle: 'Divulgamos milhares de parceiros e não garantimos o pleno funcionamento dos hyperlinks contidos, assim como o tratamento dos dados quando o usuário entrar no ambiente do mesmo.'
+        },
+        {
+          title: '4 - Geolocalização', subtitle: 'Com a autorização do usuário, captamos a latitude e longitude para mostrarmos os estabelecimentos mais próximos para utilização do clube de vantagens. Os dados são guardados em ambiente seguro e não são utilizados para outros fins.'
+        },
+        { title: '5 - Clubes de Vantagens Personalizados (White Label)', subtitle: 'A personalização dos clubes de vantagens de clientes seguem a mesma “Política de Privacidade”.' },
+      ],
+      termsData: [
+        {
+          value: 2,
+          title: '2. Princípios',
+          preText: 'A MasterClin Vantagens baseia sua atuação nos seguintes princípios:',
+          subtitle: [
+            'Respeito mútuo: A convivência deve ser sempre pautada pela civilidade, tolerância e empatia.',
+            'Zelo pelo bem-estar: O ambiente de relacionamento deve ser saudável, acolhedor e livre de constrangimentos.',
+            'Conduta ética: Todas as ações devem observar padrões éticos, legais e institucionais.',
+            'Igualdade de tratamento: Todos devem ser tratados com isonomia, sem qualquer tipo de distinção ou privilégio injustificado.'
+          ]
+        },
+        {
+          value: 3,
+          title: '3. Condutas Esperadas',
+          preText: 'É esperado que todas as partes envolvidas com a MasterClin Vantagens:',
+          subtitle: [
+            'Tratem uns aos outros com cortesia e profissionalismo.',
+            'Escutem e expressem opiniões de forma respeitosa e construtiva;',
+            'Mantenham postura adequada em todos os canais de atendimento, sejam eles presenciais, telefônicos ou digitais;',
+            'Respeitem os limites e funções de cada;',
+            'Promovam a boa convivência e o espírito colaborativo nas interações.'
+          ]
+        },
+        {
+          value: 4,
+          title: '4. Condutas Inaceitáveis',
+          preText: 'Serão consideradas violações à Política de Conduta e Convivência Interna da MasterClin Vantagens os seguintes comportamentos:',
+          subtitle: [
+            'Usuários ou terceiros:',
+            'Linguagem ofensiva, agressiva ou desrespeitosa.',
+            'Gritos, xingamentos, insultos ou ameaças.',
+            'Desprezo ou deboche intencional.',
+            'Racismo, homofobia ou qualquer forma de preconceito.',
+            'Assédio verbal, físico ou moral.',
+            'Atitudes que geram constrangimento ou insegurança.',
+            'Colaboradores:',
+            'Atendimento ríspido, impaciente ou negligente.',
+            'Falta de cordialidade ou postura profissional.',
+            'Comentários ofensivos ou inapropriados.',
+            'Desrespeito à individualidade, cultura ou crenças.',
+            'Assédio de qualquer natureza.',
+            'Discriminação ou favorecimento indevido.'
+          ]
+        },
+        {
+          value: 41,
+          title: '4.1. Por parte de usuários ou terceiros:',
+          preText: '',
+          subtitle: [
+            'Utilização de linguagem ofensiva, agressiva ou desrespeitosa;',
+            'Gritos, xingamentos, insultos ou ameaças direcionadas;',
+            'Ato de desprezo ou deboche intencional;',
+            'Racismo, homofobia ou qualquer forma de preconceito ou discriminação;',
+            'Assédio verbal, físico ou moral;',
+            'Atitudes que geram constrangimento ou insegurança.',
+          ]
+        },
+        {
+          value: 42,
+          title: '4.2. Por parte dos colaboradores da MasterClin Vantagens:',
+          preText: '',
+          subtitle: [
+            'Atendimento ríspido, impaciente ou negligente;',
+            'Falta de cordialidade ou de postura profissional;',
+            'Comentários ofensivos ou inapropriados;',
+            'Desrespeito à individualidade, cultura ou crenças;',
+            'Assédio de qualquer natureza;',
+            'Discriminação ou favorecimento indevido.',
+          ]
+        },
+        {
+          value: 5,
+          title: '5. Sanções e Consequências',
+          preText: '',
+          subtitle: []
+        },
+        {
+          value: 51,
+          title: '5.1. Sanções aplicáveis a usuários:',
+          preText: 'Caso fique constatado, mediante apuração interna, que um usuário tenha desrespeitado o colaborador ou qualquer pessoa ligada à MasterClin Vantagens, o usuário poderá ser inativado imediatamente, com a consequente perda do direito de acesso aos benefícios oferecidos pelo clube.',
+          subtitle: []
+        },
+        {
+          value: 52,
+          title: '5.2. Sanções aplicáveis à colaboradores:',
+          preText: 'Condutas inadequadas praticadas por colaboradores da MasterClin Vantagens serão apuradas com rigor e poderão resultar em advertência formal, suspensão temporária ou desligamento, de acordo com a gravidade da ocorrência e conforme as normas internas vigentes.',
+          subtitle: []
+        },
+        {
+          value: 6,
+          title: '6. Processo de Apuração',
+          preText: 'Toda denúncia ou relato de violação à presente política deverá ser formalizado por escrito, contendo data, local, descrição dos fatos e, se possível, nomes de testemunhas ou registros (prints, áudios, vídeos, etc.).',
+          subtitle: [
+            'Todos os casos serão tratados com sigilo, imparcialidade e respeito às partes envolvidas;',
+            'Nenhuma retaliação será tolerada contra quem relatar um comportamento inadequado de boa-fé;',
+            'Não haverá retaliação contra quem denunciar de boa-fé.',
+            'As decisões serão comunicadas formalmente após a apuração completa dos fatos.'
+          ]
+        },
+        {
+          value: 7,
+          title: '7. Direito de Defesa e Reconsideração',
+          preText: 'A parte que tiver sofrido alguma sanção terá direito de apresentar sua defesa, por escrito, no prazo de até 5 (cinco) dias úteis a partir da comunicação oficial. A manifestação será analisada por comissão designada pela MasterClin Vantagens, que poderá manter ou reverter a decisão anterior, com base nos elementos apresentados.',
+          subtitle: []
+        },
+        {
+          value: 8,
+          title: '8. Atualizações da Política',
+          preText: 'A MasterClin Vantagens poderá revisar e atualizar esta Política de Conduta e Convivência sempre que necessário, visando aprimorar suas práticas e reforçar seu compromisso com um ambiente ético, seguro e acolhedor para todas as pessoas. A versão mais atualizada será sempre disponibilizada no site oficial da MasterClin Vantagens.',
+          subtitle: []
+        }
+      ]
+    }
+  },
+  methods: {
+    tooglePolicy() {
+      this.isPolicyOpen = !this.isPolicyOpen
+    },
+    toogleTerms() {
+      this.isTermsOpen = !this.isTermsOpen
+    },
+    handleLink(slug) {
+      window.open(`https://apusdigital.com.br/${slug}`, "_blank")
+    }
+  }
+}
 </script>
 
-
 <style>
-/* From Uiverse.io by vinodjangid07 */
 .card {
   width: fit-content;
   height: fit-content;
@@ -115,7 +270,6 @@
   border-radius: 8px;
 }
 
-/* for all social containers*/
 .socialContainer {
   width: 32px;
   height: 32px;
@@ -128,25 +282,21 @@
   border-radius: 4px;
 }
 
-/* instagram*/
 .containerOne:hover {
   background-color: #d62976;
   transition-duration: .3s;
 }
 
-/* twitter*/
 .containerTwo:hover {
   background-color: #00acee;
   transition-duration: .3s;
 }
 
-/* linkdin*/
 .containerThree:hover {
   background-color: #0072b1;
   transition-duration: .3s;
 }
 
-/* Whatsapp*/
 .containerFour:hover {
   background-color: #128C7E;
   transition-duration: .3s;

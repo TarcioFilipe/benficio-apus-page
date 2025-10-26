@@ -33,7 +33,7 @@
           draggable
         >
           <v-sheet height="100%" color="transparent">
-            <div class="flex max-h-[390px] lg:h-full justify-center items-cente ">
+            <div class="flex h-full justify-center items-center">
               <v-img
                 :lazy-src="slide.image"
                 :src="slide.image"

@@ -19,5 +19,6 @@ declare module 'vue' {
     HorizontalSlider: typeof import('./components/HorizontalSlider.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SwiperHorizontalSlide: typeof import('./components/SwiperHorizontalSlide.vue')['default']
   }
 }

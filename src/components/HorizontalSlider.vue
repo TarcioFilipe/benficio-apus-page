@@ -10,8 +10,7 @@
       <v-container class="flex flex-row gap-4 lg:gap-4 pb-8">
         <div v-for="(item, index) in items" :key="item.name"
           class="flex flex-col min-w-[288px] lg:min-w-[388px] p-4 rounded-2xl group relative"
-          @click="toggleMobileHover(index)"
-        >
+          @click="toggleMobileHover(index)">
           <div class="flex flex-col bg-card rounded-3xl card-hover border-2 border-border hover:border-primary/80">
             <div class="px-6 py-8 sm:p-10 sm:pb-6">
               <div class="grid items-center justify-center w-full grid-cols-1 text-left">
@@ -21,21 +20,19 @@
                       {{ item.name }}
                     </h2>
                     <img :src="item.image" alt=""
-                      class="p-2 inline-block size-14 lg:size-18 rounded-full ring-2 ring-white/60 outline -outline-offset-1 outline-black/5 object-contain" 
-                    />
+                      class="p-2 inline-block size-14 lg:size-18 rounded-full ring-2 ring-white/60 outline -outline-offset-1 outline-black/5 object-contain" />
                   </div>
                   <p class="mt-1 text-sm text-card-muted-foreground">{{ item.description }}</p>
                 </div>
               </div>
             </div>
             <div class="flex px-6 pb-8 sm:px-8">
-              <a aria-describedby="tier-company"
-                class="flex items-center justify-center w-full px-6 py-2.5 text-center 
+              <button aria-describedby="tier-company" class="flex items-center justify-center w-full px-6 py-2.5 text-center 
                 text-card-foreground duration-200 bg-muted border-2 border-muted rounded-full nline-flex 
                 hover:bg-transparent! hover:border-foreground hover:text-card-muted-foreground! focus:outline-none"
-                href="#">
+                @click="handleClick('')">
                 Ver benefício
-              </a>
+              </button>
             </div>
           </div>
         </div>

@@ -2,7 +2,11 @@
   <div class="w-full h-full mt-4">
     <Banner :slides="slides" />
 
-    <HorizontalSlider :title="'Benefícios mais acessados'" :items="mostAcess" @view-benefit="handleLink" />
+     <SwiperHorizontalSlide
+      title="Benefício mais acessados"
+      :items="mostAcess"
+      @view-benefit="handleLink"
+    />
 
     <div class="flex overflow-x-auto mt-6" style="scrollbar-width: none;">
       <v-container class="flex flex-row gap-6 sm:gap-4 md:justify-between lg:max-w-[1440px]">
@@ -24,19 +28,24 @@
           </v-slide-group>
         </v-sheet>
       </v-container>
-
-      <HorizontalSlider :title="'Benefícios mais recentes'" :items="mostRecents" @view-benefit="handleLink" />
     </div>
+
+    <SwiperHorizontalSlide
+      title="Benefícios mais recentes"
+      :items="mostRecents"
+      @view-benefit="handleLink"
+    />
   </div>
 </template>
 
 <script>
 import BenefitItem from '@/components/BenefitItem.vue'
-import HorizontalSlider from '@/components/HorizontalSlider.vue';
+import SwiperHorizontalSlide from '@/components/SwiperHorizontalSlide.vue';
 
 export default {
   components: {
-    BenefitItem
+    BenefitItem,
+    SwiperHorizontalSlide
   },
   name: 'Home',
   data() {
