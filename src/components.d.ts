@@ -15,7 +15,6 @@ declare module 'vue' {
     BenefitItem: typeof import('./components/BenefitItem.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     Header: typeof import('./components/Header.vue')['default']
-    HorizontalSlide: typeof import('./components/HorizontalSlider.vue')['default']
     HorizontalSlider: typeof import('./components/HorizontalSlider.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

@@ -51,13 +51,13 @@
             <p @click="handleLink('conta-pj')" class="hover:underline">Conta PJ APUS</p>
           </li>
           <li>
-            <p @click="handleLink('pix')"class="hover:underline">PIX</p>
+            <p @click="handleLink('pix')" class="hover:underline">PIX</p>
           </li>
           <li>
-            <p @click="handleLink('capital-giro')"class="hover:underline">Capital de Giro</p>
+            <p @click="handleLink('capital-giro')" class="hover:underline">Capital de Giro</p>
           </li>
           <li>
-            <p @click="handleLink('link-pagamento')"class="hover:underline">Link de Pagamento</p>
+            <p @click="handleLink('link-pagamento')" class="hover:underline">Link de Pagamento</p>
           </li>
         </ul>
       </div>
@@ -91,7 +91,7 @@
         </div>
       </div>
       <p class="font-medium text-sm">
-        © 2015 - {{ new Date().getFullYear() }} — Todos os diretos reservados
+        © 2024 - {{ new Date().getFullYear() }} — Todos os diretos reservados
       </p>
     </div>
     <div class="border-t border-gray-700 mt-10"></div>
@@ -326,8 +326,7 @@ export default {
   }
 
   100% {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateY(0);  opacity: 1;
   }
 }
 </style>
